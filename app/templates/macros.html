@@ -10,6 +10,18 @@
 
 
     </div>
+
+    
     {% endfor %}
 
+{%endmacro%}
+
+{% macro displayprofilepitch(pitch_list) %}
+
+    {% for pitch in pitch_list %}
+
+<ul>
+    <li>pitch.title</li>
+</ul>
+    {% endfor %}
 {%endmacro%}

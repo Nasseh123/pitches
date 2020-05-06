@@ -16,10 +16,13 @@
 
     {% if pitch %}
         {{macro.displaypitches(pitch)}}
-    {% else%}
+    {% elif current_user.is_authenticated %}
         <h3 class="text-center">This is no pitch yet </h3>
 
-        <a class="btn btn-success btn-lg text-center" href=""> Be the first To add!</a>
+    <a class="btn btn-success btn-lg text-center" href="{{url_for('main.new_pitch',id=current_user.id)}}"> Be the first To add!</a>
+    {%else%}
+    <h3>There are no pitches yet..Please login to be the first to Update a pitch!!</h3>
+    <a class="btn btn-success btn-lg text-center" href="{{url_for('auth.login')}}">Sign in</a>
     {% endif %}
 
 </div>

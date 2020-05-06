@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import Pitch
-from flask_login import login_required
+from flask_login import login_required,current_user
 from ..models import User
 from  ..import db,photos
 from .forms import UpdateProfile,AddPitch
@@ -80,4 +80,4 @@ def new_pitch(id):
         new_pitch.save_pitch()
         return redirect(url_for('.index',id=user.id))
     title='New Pitch'
-    return render_template('pitch.html',title = title, pitch_form=form)
+    return render_template('pitch.html',title = title, pitch_form=form,user=user)

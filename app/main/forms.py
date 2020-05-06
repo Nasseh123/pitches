@@ -8,6 +8,7 @@ class UpdateProfile(FlaskForm):
 
 class AddPitch(FlaskForm):
     title=TextAreaField("Pitch Title",validators=[Required()])
-    category=TextAreaField("Category",validators=[Required()])
+    # category=TextAreaField("Category",validators=[Required()])
+    category=RadioField("Category",choices=[("general","General"),("pickuplines","Pick Up Lines"),("Interview Pitch","Interview Pitch"),("Product Pitch","Product Pitch"),("promotion","Promotion")])
     description=TextAreaField("Description",validators=[Required()])
     submit=SubmitField('Submit')

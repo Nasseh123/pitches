@@ -35,20 +35,21 @@
 
             {% if user == current_user %}
             <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit Bio Profile</a>
-            <a class="btn btn-success btn-lg text-center" href="/user/pitch/{{user.id}}"> Be the first To add!</a>
+            <a class="btn btn-success btn-lg text-center" href="{{url_for('main.new_pitch',id=user.id)}}"> Be the first
+                To add!</a>
             {% endif %}
         </div>
         <div class="col-md-4">
 
-            {% for pitch in pitches %}
-            {%if pitch %}
-            <ul>
-                <li>{{pitch.title}}</li>
-            </ul>
+
+            {%if pitches %}
+            {{macro.displayprofilepitch(pitches)}}
             {%else%}
-            <p>YOU CURRENTLY DONT HAVE ANY PITCHES YET</p>
+
+                <p>YOU CURRENTLY DONT HAVE ANY PITCHES YET</p>
+            
             {% endif %}
-            {% endfor %}
+
         </div>
     </div>
 
