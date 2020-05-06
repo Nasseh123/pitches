@@ -35,8 +35,7 @@
 
             {% if user == current_user %}
             <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit Bio Profile</a>
-            <a class="btn btn-success btn-lg text-center" href="{{url_for('main.new_pitch',id=user.id)}}"> Be the first
-                To add!</a>
+            <a class="btn btn-success btn-lg text-center" href="{{url_for('main.new_pitch',id=user.id)}}"> NEW PITCH!</a>
             {% endif %}
         </div>
         <div class="col-md-4">

@@ -1,27 +1,49 @@
 {% macro displaypitches(pitch_list) %}
 
-    {% for pitch in pitch_list %}
+{% for pitch in pitch_list %}
 
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
-        <h2> {{ pitch.title}} </h2>
-        <p> {{ pitch.description | truncate(30) }}</p>
+<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
+    <h2> {{ pitch.title}} </h2>
+    <p> {{ pitch.description | truncate(30) }}</p>
 
-
-
-
-    </div>
-
-    
-    {% endfor %}
+</div>
+{% endfor %}
 
 {%endmacro%}
 
+<!-- &&&&&&&&&&&&&&&&&&&&7 -->
+{% macro displaycategory(pitch_list) %}
+
+{% for pitch in pitch_list %}
+
+<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
+    <h2> {{ pitch.title}} </h2>
+    <p> {{ pitch.description | truncate(30) }}</p>
+
+</div>
+{% endfor %}
+
+{%endmacro%}
+<!-- (((((((((((((((((()))))))))))))))))) -->
 {% macro displayprofilepitch(pitch_list) %}
 
-    {% for pitch in pitch_list %}
+{% for pitch in pitch_list %}
 
 <ul>
     <li>pitch.title</li>
 </ul>
-    {% endfor %}
+{% endfor %}
+{%endmacro%}
+
+<!-- ************************************************** -->
+{% macro displaycategories(pitchlist) %}
+
+{% for pitch in pitchlist %}
+
+<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
+    <h2> {{ pitch.title}} </h2>
+    <p> {{ pitch.description | truncate(30) }}</p>
+
+</div>
+{% endfor %}
 {%endmacro%}

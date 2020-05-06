@@ -66,6 +66,8 @@ class Pitch(db.Model):
     category=db.Column(db.String)
     description=db.Column(db.String)
     user_id=db.Column(db.Integer,db.ForeignKey('users.id'))
+    
+    
     def __repr__(self):
         return f'User {self.pitch}'
 
@@ -81,8 +83,23 @@ class Pitch(db.Model):
     def get_all_pitch():
         pitch= Pitch.query.all()
         return pitch
+    @classmethod
+# Getting categories
+    def get_pitch_category(cls,category):
+        pitch= Pitch.query.filter_by(category=category).all()
+        return pitch
+class Category(db.Model):
+    __tablename__='category'
 
+    id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String)
+    # pitchcategory=db.relationship("Pitch",backref="category",lazy="dynamic")
 
+    @classmethod
+    def get_category(cls,name):
+        category=Category.query.filter_by(name=name).first()
+        return category
+    
 
     
    

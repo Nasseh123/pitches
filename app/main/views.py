@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Pitch
+from ..models import Pitch,Category
 from flask_login import login_required,current_user
 from ..models import User
 from  ..import db,photos
@@ -16,25 +16,50 @@ def index():
     title = 'Home - Welcome to The Pitchpitches'
     # user=User.get_user(id)
     pitch=Pitch.get_all_pitch()
-    return render_template('index.html',message=message,title=title,pitch=pitch)
+    general="general"
+    pickuplines="pickuplines"
+    interviewpitch="interviewpitch"
+    productpitch="productpitch"            
+    promotionpitch="promotionpitch"
+    return render_template('index.html',message=message,title=title,pitch=pitch,
+    general=general,pickuplines=pickuplines,interviewpitch=interviewpitch,
+    productpitch=productpitch,promotionpitch=promotionpitch)
 
 @main.route('/pitch/<category>')
 def pitch(category):
 
-    '''
-    View movie page function that returns the movie details page and its data
-    '''
-    return render_template('categories.html',category = category)
+    general="general"
+    pickuplines="pickuplines"
+    interviewpitch="interviewpitch"
+    productpitch="productpitch"            
+    promotionpitch="promotionpitch"
+
+    category=category
+    # pitches=Pitch.query.filter_by(category=category).first()
+    # pitchss=pitches.get_all_pitch()
+    # catname=pitches.id
+    # category=pitches.category
+    pitches=Pitch.get_pitch_category(category)
+
+    return render_template('categories.html',category = category,pitches=pitches,general=general,pickuplines=pickuplines,interviewpitch=interviewpitch,
+    productpitch=productpitch,promotionpitch=promotionpitch)
 
 @main.route('/user/<uname>')
 def profile(uname):
+    general="general"
+    pickuplines="pickuplines"
+    interviewpitch="interviewpitch"
+    productpitch="productpitch"            
+    promotionpitch="promotionpitch"
+    
     user = User.query.filter_by(username = uname).first()
     user_id=user.id
     pitches=Pitch.get_pitch(user_id)
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user,pitches=pitches)
+    return render_template("profile/profile.html", user = user,pitches=pitches,general=general,pickuplines=pickuplines,interviewpitch=interviewpitch,
+    productpitch=productpitch,promotionpitch=promotionpitch)
 
 @main.route('/user/<uname>/update',methods=['GET','POST'])
 @login_required
