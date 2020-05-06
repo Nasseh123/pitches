@@ -8,3 +8,19 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 <!-- Content block -->
+{% block content %}
+<div class="row">
+
+    <h1>Pitch</h1>
+    <hr>
+
+    {% if pitch %}
+        {{macro.displaypitches(pitch)}}
+    {% else%}
+        <h3 class="text-center">This is no pitch yet </h3>
+
+        <a class="btn btn-success btn-lg text-center" href=""> Be the first To add!</a>
+    {% endif %}
+
+</div>
+{% endblock %}

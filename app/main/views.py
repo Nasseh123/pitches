@@ -14,7 +14,9 @@ def index():
     '''
     message='Index Page'
     title = 'Home - Welcome to The Pitchpitches'
-    return render_template('index.html',message=message,title=title)
+    # user=User.get_user(id)
+    pitch=Pitch.get_all_pitch()
+    return render_template('index.html',message=message,title=title,pitch=pitch)
 
 @main.route('/pitch/<category>')
 def movie(category):

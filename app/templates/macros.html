@@ -1,2 +1,15 @@
-{%macro displayindex()%}
+{% macro displaypitches(pitch_list) %}
+
+    {% for pitch in pitch_list %}
+
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
+        <h2> {{ pitch.title}} </h2>
+        <p> {{ pitch.description | truncate(30) }}</p>
+
+
+
+
+    </div>
+    {% endfor %}
+
 {%endmacro%}
