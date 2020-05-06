@@ -69,7 +69,7 @@ class Pitch(db.Model):
     def __repr__(self):
         return f'User {self.pitch}'
 
-    def save_review(self):
+    def save_pitch(self):
         db.session.add(self)
         db.session.commit()
     
