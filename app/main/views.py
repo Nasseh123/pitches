@@ -1,6 +1,7 @@
 from flask import render_template
 from . import main
 from ..models import Pitch
+from flask_login import login_required
 
 # views
 @main.route('/')
@@ -19,3 +20,4 @@ def movie(category):
     View movie page function that returns the movie details page and its data
     '''
     return render_template('categories.html',category = category)
+
