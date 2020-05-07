@@ -26,7 +26,7 @@ class User(UserMixin,db.Model):
     role_id=db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    pitch=db.relationship('Pitch',backref='pitch',lazy='dynamic')
+    pitch=db.relationship('Pitch',backref='col',lazy='dynamic')
     pass_secure = db.Column(db.String(255))
 
 # generate a password hash and pass the hashed password as a value to the pass_secure column property to save to the database.
@@ -77,7 +77,7 @@ class Pitch(db.Model):
     
     @classmethod
     def get_pitch(cls,id):
-        pitch= Pitch.query.filter_by(id=id).all()
+        pitch= Pitch.query.filter_by(user_id=id).all()
         return pitch
 # ******88RETURNS ALL PITCHES
     def get_all_pitch():

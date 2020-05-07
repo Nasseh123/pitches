@@ -41,14 +41,14 @@
         <div class="col-md-4">
 
 
-            {%if pitches %}
-            {{macro.displayprofilepitch(pitches)}}
+            {%for pitchss in pitches%}
+            <ul>
+                <li>{{pitchss.title}}</li>
+            </ul>
             {%else%}
-
-                <p>YOU CURRENTLY DONT HAVE ANY PITCHES YET</p>
+            <P>NO PITCHES!</P>
             
-            {% endif %}
-
+            {%endfor%}
         </div>
     </div>
 
