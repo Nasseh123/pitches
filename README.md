@@ -93,7 +93,7 @@ for Reviews, Advice, Collaborations and Comments
 
 > MIT License
 
-> Copyright (c) 2018 **Manasseh Bundi**
+> Copyright (c) 2020 **Manasseh Bundi**
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
