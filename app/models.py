@@ -28,7 +28,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     pitch=db.relationship('Pitch',backref='col',lazy='dynamic')
     pass_secure = db.Column(db.String(255))
-
+    comments=db.relationship('Comment',backref='user',lazy='dynamic')
 # generate a password hash and pass the hashed password as a value to the pass_secure column property to save to the database.
     @property
     def password(self):
@@ -66,6 +66,7 @@ class Pitch(db.Model):
     category=db.Column(db.String)
     description=db.Column(db.String)
     user_id=db.Column(db.Integer,db.ForeignKey('users.id'))
+    comment=db.relationship('Comment',backref='comment',lazy='dynamic')
     
     
     def __repr__(self):
@@ -79,26 +80,44 @@ class Pitch(db.Model):
     def get_pitch(cls,id):
         pitch= Pitch.query.filter_by(user_id=id).all()
         return pitch
+    @classmethod
+    def get_pitch_id(cls,id):
+        pitch= Pitch.query.filter_by(id=id).all()
+        return pitch
 # ******88RETURNS ALL PITCHES
     def get_all_pitch():
         pitch= Pitch.query.all()
+        return pitch
+    @classmethod
+    def get_all_pitchs():
+        pitch= Pitch.query.first()
         return pitch
     @classmethod
 # Getting categories
     def get_pitch_category(cls,category):
         pitch= Pitch.query.filter_by(category=category).all()
         return pitch
-class Category(db.Model):
-    __tablename__='category'
+class Comment(db.Model):
+    __tablename__='comment'
 
     id=db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String)
+    description=db.Column(db.String)
+    upvote=db.Column(db.Integer)
+    downvote=db.Column(db.Integer)
+    time_posted=db.Column(db.DateTime,default=datetime.utcnow)
+    user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
+    pitch_id=db.Column(db.Integer,db.ForeignKey("pitch.id"))
     # pitchcategory=db.relationship("Pitch",backref="category",lazy="dynamic")
 
+   
+    def save_new_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
     @classmethod
-    def get_category(cls,name):
-        category=Category.query.filter_by(name=name).first()
-        return category
+    def get_comment(cls,id):
+        comment = Comment.query.filter_by(pitch_id=id).all()
+        return reviews
     
 
     

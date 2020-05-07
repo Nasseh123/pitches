@@ -1,11 +1,12 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Pitch,Category
+from ..models import Pitch,Comment
+
 from flask_login import login_required,current_user
 from ..models import User
 from  ..import db,photos
-from .forms import UpdateProfile,AddPitch
-
+from .forms import UpdateProfile,AddPitch,CommentInput
+from datetime import datetime
 # views
 @main.route('/')
 def index():
@@ -35,14 +36,27 @@ def pitch(category):
     promotionpitch="promotionpitch"
 
     category=category
-    # pitches=Pitch.query.filter_by(category=category).first()
+    
+   
+    pitches=Pitch.query.filter_by(category=category).first()
     # pitchss=pitches.get_all_pitch()
     # catname=pitches.id
     # category=pitches.category
+
+    form=CommentInput()
+    
+    if form.validate_on_submit():
+        description=form.description.data
+        
+        new_comment=Comment(description=description,upvote=0,downvote=0,time_posted=time,pitch_id=pitch_id)
+        # SAVE COMENT
+        new_comment.save_new_comment()
+        
+    #
     pitches=Pitch.get_pitch_category(category)
 
     return render_template('categories.html',category = category,pitches=pitches,general=general,pickuplines=pickuplines,interviewpitch=interviewpitch,
-    productpitch=productpitch,promotionpitch=promotionpitch)
+    productpitch=productpitch,promotionpitch=promotionpitch,form=form)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -51,10 +65,12 @@ def profile(uname):
     interviewpitch="interviewpitch"
     productpitch="productpitch"            
     promotionpitch="promotionpitch"
-    
+
     user = User.query.filter_by(username = uname).first()
     user_id=user.id
     pitches=Pitch.get_pitch(user_id)
+    
+    
     if user is None:
         abort(404)
 

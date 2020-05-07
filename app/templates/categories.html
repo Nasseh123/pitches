@@ -1,13 +1,24 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
+{% import "bootstrap/wtf.html" as wtf %}
 <!-- Content block -->
 {% block content %}
-<h1> Hello  {{ category }} </h1>
-<h2>{{pitches.title}}</h2>
+<div class="container">
+    <h1 style="text-align: center;">  {{ category.upper() }} </h1>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>{{ category.title() }} Pitches</h2>
+            {{macro.displaycategory(pitches)}}
+        </div>
+        <div class="col-md-4">
+            <P style="width: 30px;">{{wtf.quick_form(form)}}</P>
+        </div>
+    
+    </div>
+       
+    
+        
+</div>
 
-<h2>{{pitches.category}}</h2>
-<ul>
-    <li>{{macro.displaycategory(pitches)}}
-    </li>   
-</ul>
+
 {% endblock %}
