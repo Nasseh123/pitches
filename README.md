@@ -1,4 +1,4 @@
-# Blog
+# PitchPitches
 
 > A pitching website for pitching quotes and ispirations
 
@@ -27,9 +27,8 @@ As a user I would like:
 ## How to use it
 
 > * Internet connection
-> * Click https://blog-here.herokuapp.com/) <br/>
-  or <br/>
-> * Copy https://blog-here.herokuapp.com/) and  Paste the link on your prefered browser
+> * Click ) <br/>
+  
 
 ## How it works
 
