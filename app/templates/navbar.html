@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse" role="navigation">
+<!-- <div class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -12,25 +12,52 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li><a href="{{url_for('main.pitch',category=general)}}">General</a></li>
-                <li><a href="{{url_for('main.pitch',category=pickuplines)}}">pickuplines</a></li>
-                <li><a href="{{url_for('main.pitch',category=interviewpitch)}}">interviewpitch</a></li>
-                <li><a href="{{url_for('main.pitch',category=productpitch)}}">productpitch</a></li>
-                <li><a href="{{url_for('main.pitch',category=promotionpitch)}}">promotionpitch</a></li>
-                
-                
+                <li><a href="{{url_for('main.pitch',category='general')}}">General</a></li>
+                <li><a href="{{url_for('main.pitch',category='pickuplines')}}">pickuplines</a></li>
+                <li><a href="{{url_for('main.pitch',category='interviewpitch')}}">interviewpitch</a></li>
+                <li><a href="{{url_for('main.pitch',category='productpitch')}}">productpitch</a></li>
+                <li><a href="{{url_for('main.pitch',category='promotionpitch')}}">promotionpitch</a></li>
                 <li><a href="/pitch/motivated">Motivated</a></li>
+            </ul>
+            
 
-                <ul class="nav navbar-nav navbar-right">
-                    {% if current_user.is_authenticated %}
-                    <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
-                    <li style="color:white;padding:15px;">{{current_user.username}}</li>
-                    <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
-                    {% else %}
-                    <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-                    {%endif%}
-                </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+                <li style="color:white;padding:15px;">{{current_user.username}}</li>
+                <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                {% else %}
+                <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                {%endif%}
+            </ul>
         </div>
 
     </div>
-</div>
+</div> -->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">PITCH PICHES</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="{{url_for('main.pitch',category='general')}}">General</a></li>
+        <li><a href="{{url_for('main.pitch',category='pickuplines')}}">pickuplines</a></li>
+        <li><a href="{{url_for('main.pitch',category='interviewpitch')}}">interviewpitch</a></li>
+        <li><a href="{{url_for('main.pitch',category='productpitch')}}">productpitch</a></li>
+        <li><a href="{{url_for('main.pitch',category='promotionpitch')}}">promotionpitch</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <li><a href="{{url_for('main.profile',uname=current_user.username)}}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+        <li style="color:white;padding:15px;">{{current_user.username}}</li>
+        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+        {% else %}
+               
+                <li><a href="{{url_for('auth.login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {%endif%}
+        
+       
+      </ul>
+    </div>
+  </nav>

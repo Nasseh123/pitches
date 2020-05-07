@@ -29,34 +29,38 @@ def index():
 @main.route('/pitch/<category>')
 def pitch(category):
 
-    general="general"
-    pickuplines="pickuplines"
-    interviewpitch="interviewpitch"
-    productpitch="productpitch"            
-    promotionpitch="promotionpitch"
+    # general="general"
+    # pickuplines="pickuplines"
+    # interviewpitch="interviewpitch"
+    # productpitch="productpitch"            
+    # promotionpitch="promotionpitch"
 
-    category=category
+    
     
    
-    pitches=Pitch.query.filter_by(category=category).first()
+    pitches=Pitch.query.filter_by(category=category).all()
+    pitchess=Pitch.query.filter_by(category=category).first()
     # pitchss=pitches.get_all_pitch()
     # catname=pitches.id
     # category=pitches.category
+    # pitch_id=pitches.id
 
+    pitcheses=Pitch.get_pitch_category(category)
     form=CommentInput()
     
     if form.validate_on_submit():
         description=form.description.data
         
-        new_comment=Comment(description=description,upvote=0,downvote=0,time_posted=time,pitch_id=pitch_id)
+        new_comment=Comment(description=description,upvote=0,downvote=0,pitch_id=pitchess.id)
         # SAVE COMENT
         new_comment.save_new_comment()
-        
+        return redirect(url_for('.pitch',category=pitcheses.category))
+
+        # return redirect(url_for('.movie',id = movie.id ))
     #
     pitches=Pitch.get_pitch_category(category)
 
-    return render_template('categories.html',category = category,pitches=pitches,general=general,pickuplines=pickuplines,interviewpitch=interviewpitch,
-    productpitch=productpitch,promotionpitch=promotionpitch,form=form)
+    return render_template('categories.html',category = category,pitches=pitches,form=form)
 
 @main.route('/user/<uname>')
 def profile(uname):
