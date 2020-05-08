@@ -5,7 +5,7 @@ class Config:
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://manasseh:beast@localhost/pitch'
+    
     UPLOADED_PHOTOS_DEST ='app/static/photos'      #specifies the destination to where we want to store our Images.
 
     #  email configurations
@@ -22,7 +22,7 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    QLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
 class DevConfig(Config):
@@ -32,6 +32,7 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://manasseh:beast@localhost/pitch'
 
     DEBUG = True
 config_options = {
